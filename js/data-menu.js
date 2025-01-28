@@ -102,7 +102,7 @@ const mcmenu = [
   {
     id: "drinks",
     name: "Drinks",
-    image: { src: "/js11-1img/menu/cola.webp", alt: "drinks" },
+    image: { src: "/js11-1/img/menu/cola.webp", alt: "drinks" },
     meals: [
       {
         id: "1",
