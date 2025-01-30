@@ -13,6 +13,8 @@ body {
     background-size: 800px;
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 0; 
+    animation: fadeIn 2s forwards; 
 }
 
 .disable{
