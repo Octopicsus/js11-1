@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
   showMcMenuWidget(".menu-categories", "meal-category", mcmenu);
   console.log(sessionStorage.getItem("selectedCurrency"));
   updatePrices();
+  
 });
 
 //
@@ -168,7 +169,12 @@ document
         (meals) => meals.id === mealId
       );
       console.log(selectedMeal.name);
+
+      let unitPrice = selectedMeal.price * currencyRates[selectedCurrency];
+      document.getElementById("calculation").textContent = `${Math.round(unitPrice)}${currencySymbols[selectedCurrency]}`;
+      
       document.querySelector(".bgimage").classList.add("disable");
+     
 
       showSelectedMcMeal(selectedMeal);
     }
@@ -211,12 +217,10 @@ function showSelectedMcMeal(meal) {
     </div>`;
 
   initializeSlider(meal.ingredImg);
-  updateTotalPrice();
 
   document.querySelector(".getBtn").addEventListener("click", () => {
     document.querySelector(".order-wrapper").classList.remove("hidden");
     document.querySelector(".bg").classList.add("blur");
-    
   });
 }
 
@@ -225,7 +229,6 @@ function showSelectedMcMeal(meal) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const orderAmountInput = document.querySelector('input[name="orderamount"]');
-  orderAmountInput.value = 1;
 
   function updateTotalPrice() {
     if (!selectedMeal) return;
@@ -246,8 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }`
     );
   }
-
-  updateTotalPrice();
 
   orderAmountInput.addEventListener("change", updateTotalPrice);
 });

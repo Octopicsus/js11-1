@@ -7,6 +7,11 @@ function initializeSlider(imagesArray) {
   const nextBTN = document.querySelector(".next-btn");
   const prevBTN = document.querySelector(".prev-btn");
 
+  if (!sliderWin || !pointsWin || !nextBTN || !prevBTN) {
+    console.error("Slider elements not found in the DOM");
+    return;
+  }
+
   let selected = 0;
   let pauseOn = false;
   let showTools = false;
@@ -52,8 +57,12 @@ function initializeSlider(imagesArray) {
   showSlider();
 
   function changeSlide(actionType = "next", slideNum = null) {
-    sliderWin.children[selected].classList.remove("active");
-    pointsWin.children[selected].classList.remove("active");
+    if (sliderWin.children[selected]) {
+      sliderWin.children[selected].classList.remove("active");
+    }
+    if (pointsWin.children[selected]) {
+      pointsWin.children[selected].classList.remove("active");
+    }
 
     if (slideNum !== null) {
       selected = slideNum;
@@ -70,9 +79,13 @@ function initializeSlider(imagesArray) {
         }
       }
     }
-
-    sliderWin.children[selected].classList.add("active");
-    pointsWin.children[selected].classList.add("active");
+    
+    if (sliderWin.children[selected]) {
+      sliderWin.children[selected].classList.add("active");
+    }
+    if (pointsWin.children[selected]) {
+      pointsWin.children[selected].classList.add("active");
+    }
 
     if (actionType || slideNum !== null) {
       clearInterval(timer);
