@@ -222,13 +222,15 @@ function showSelectedMcMeal(meal) {
 //
 // ---- ORDER FORM -----
 
-document
-  .querySelector('input[name="orderamount"]')
-  .addEventListener("change", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
+  const orderAmountInput = document.querySelector('input[name="orderamount"]');
+  orderAmountInput.value = 1; 
+
+  orderAmountInput.addEventListener("change", (event) => {
     let amount = event.target.value;
     if (amount < 1) {
       event.target.value = 1;
-      return;
+      amount = 1;
     }
     let price = selectedMeal.price * currencyRates[selectedCurrency];
     let totalPrice = price * amount;
@@ -241,6 +243,7 @@ document
       }`
     );
   });
+});
 
 //
 
