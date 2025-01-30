@@ -211,11 +211,12 @@ function showSelectedMcMeal(meal) {
     </div>`;
 
   initializeSlider(meal.ingredImg);
+  updateTotalPrice();
 
   document.querySelector(".getBtn").addEventListener("click", () => {
     document.querySelector(".order-wrapper").classList.remove("hidden");
     document.querySelector(".bg").classList.add("blur");
-    updateTotalPrice();
+    
   });
 }
 
