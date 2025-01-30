@@ -1,4 +1,3 @@
-
 //
 // ---- CURRENCY -----
 
@@ -226,10 +225,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const orderAmountInput = document.querySelector('input[name="orderamount"]');
   orderAmountInput.value = 1; 
 
-  orderAmountInput.addEventListener("change", (event) => {
-    let amount = event.target.value;
+  function updateTotalPrice() {
+    let amount = orderAmountInput.value;
     if (amount < 1) {
-      event.target.value = 1;
+      orderAmountInput.value = 1;
       amount = 1;
     }
     let price = selectedMeal.price * currencyRates[selectedCurrency];
@@ -242,7 +241,11 @@ document.addEventListener("DOMContentLoaded", () => {
         currencySymbols[selectedCurrency]
       }`
     );
-  });
+  }
+
+  updateTotalPrice();
+
+  orderAmountInput.addEventListener("change", updateTotalPrice);
 });
 
 //
