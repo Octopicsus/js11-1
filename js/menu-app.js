@@ -215,6 +215,7 @@ function showSelectedMcMeal(meal) {
   document.querySelector(".getBtn").addEventListener("click", () => {
     document.querySelector(".order-wrapper").classList.remove("hidden");
     document.querySelector(".bg").classList.add("blur");
+    updateTotalPrice();
   });
 }
 
@@ -223,9 +224,11 @@ function showSelectedMcMeal(meal) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const orderAmountInput = document.querySelector('input[name="orderamount"]');
-  orderAmountInput.value = 1; 
+  orderAmountInput.value = 1;
 
   function updateTotalPrice() {
+    if (!selectedMeal) return;
+
     let amount = orderAmountInput.value;
     if (amount < 1) {
       orderAmountInput.value = 1;
